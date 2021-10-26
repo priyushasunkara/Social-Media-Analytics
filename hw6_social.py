@@ -11,6 +11,7 @@ project = "Social" # don't edit this
 ### PART 1 ###
 
 import pandas as pd
+import re
 import nltk
 nltk.download('vader_lexicon', quiet=True)
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
@@ -87,7 +88,7 @@ Parameters: str
 Returns: list of strs
 '''
 def findHashtags(message):
-    return
+    return re.findall(r"#\w+", message)
 
 
 '''
@@ -287,7 +288,7 @@ if __name__ == "__main__":
     # print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
-    test.testParseState()
+    test.testFindHashtags()
 
     ## Uncomment these for Week 2 ##
     """print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
