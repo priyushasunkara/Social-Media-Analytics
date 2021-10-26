@@ -88,7 +88,7 @@ Parameters: str
 Returns: list of strs
 '''
 def findHashtags(message):
-    return re.findall(r"#\w+", message)
+    return re.findall("#\w*", message)
 
 
 '''
@@ -98,7 +98,8 @@ Parameters: dataframe ; str
 Returns: str
 '''
 def getRegionFromState(stateDf, state):
-    return
+    row=stateDf.loc[stateDf['state']==state,'region']
+    return row.values[0]
 
 
 '''
@@ -288,7 +289,7 @@ if __name__ == "__main__":
     # print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
-    test.testFindHashtags()
+    test.testGetRegionFromState()
 
     ## Uncomment these for Week 2 ##
     """print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
