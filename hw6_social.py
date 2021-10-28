@@ -243,8 +243,14 @@ Parameters: dict mapping strs to ints ; int
 Returns: dict mapping strs to ints
 '''
 def mostCommonHashtags(hashtags, count):
-    return
-
+    hashtagssorted={}
+    Total=0
+    hashtags_sorted_dict = sorted(hashtags, key=hashtags.get, reverse=True)
+    for r in hashtags_sorted_dict:
+        if Total<count:
+            hashtagssorted[r]= hashtags[r]
+            Total=Total+1
+    return (hashtagssorted)
 
 '''
 getHashtagSentiment(data, hashtag)
@@ -253,7 +259,16 @@ Parameters: dataframe ; str
 Returns: float
 '''
 def getHashtagSentiment(data, hashtag):
-    return
+    list=[]
+    for index,row in data.iterrows():
+        if hashtag in row['text']:
+            if row['sentiment']=='positive':
+                list.append(1)
+            elif row['sentiment']=='negative':
+                list.append(-1)
+            elif row['sentiment']=='neutral':
+                list.append(0)
+    return sum(list)/len(list)
 
 
 ### PART 3 ###
@@ -363,7 +378,7 @@ if __name__ == "__main__":
     stateDf = makeDataFrame("data/statemappings.csv")
     addColumns(df, stateDf)
     addSentimentColumn(df)
-    test.testGetHashtagRates(df)
+    test.testGetHashtagSentiment(df)
 
     ## Uncomment these for Week 2 ##
     """print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
